@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    jupyter:
+        container_name: jupyter-ml
+        build:
+            context: .
+            dockerfile: jupyter.dockerfile
+        environment:
+            - JUPYTER_LAB_ENABLE=yes
+        volumes:
+            - $PWD/../projects:/home/jovyan/work
+        ports:
+            - "8888:8888"
