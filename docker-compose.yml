@@ -17,10 +17,12 @@
 
 version: "3"
 services:
-  datascience-notebook:
-      image: jupyter/datascience-notebook
-      volumes:
-        - ${LOCAL_WORKING_DIR}:/home/jovyan/work
-      ports:
-        - 8888:8888
-      container_name: datascience-notebook-container
+    datascience-notebook:
+        container_name: jupyter-datascience
+        build:
+            context: ./docker
+            dockerfile: jupyter.dockerfile
+        volumes:
+            - ${LOCAL_WORKING_DIR}:/home/jovyan/work
+        ports:
+            - 8888:8888
