@@ -1,14 +1,26 @@
-version: '3'
 
+# version:  '3'
+# services:
+#   datascience-notebook:
+#       image:    jupyter/datascience-notebook
+#       volumes:
+#         - ${LOCAL_WORKING_DIR}:/home/jovyan/work
+#         - ${LOCAL_DATASETS}:/home/jovyan/work/datasets
+#         - ${LOCAL_MODULES}:/home/jovyan/work/modules
+#         - ${LOCAL_SSL_CERTS}:/etc/ssl/notebook
+#       ports:
+#         - ${PORT}:8888
+#       container_name:   jupyter_notebook
+#       command: "start-notebook.sh \
+#         --NotebookApp.password=${ACCESS_TOKEN} \
+#         --NotebookApp.certfile=/etc/ssl/notebook/jupyter.pem"
+
+version: "3"
 services:
-    jupyter:
-        container_name: jupyter-ml
-        build:
-            context: .
-            dockerfile: jupyter.dockerfile
-        environment:
-            - JUPYTER_LAB_ENABLE=yes
-        volumes:
-            - $PWD/../projects:/home/jovyan/work
-        ports:
-            - "8888:8888"
+  datascience-notebook:
+      image: jupyter/datascience-notebook
+      volumes:
+        - ${LOCAL_WORKING_DIR}:/home/jovyan/work
+      ports:
+        - 8888:8888
+      container_name: datascience-notebook-container
