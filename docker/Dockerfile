@@ -1,6 +1,6 @@
 FROM jupyter/scipy-notebook:a6fc0cfbd01b
 LABEL base-image="jupyter/scipy-notebook:a6fc0cfbd01b 11/6/2018"
-LABEL maintainer="Pedro Ramos <ramuspedro@gmail.com>"
+LABEL maintainer="Tyler Erickson <tylere@google.com>"
 
 # Altair - Declarative visualization in Python
 #     docs: https://altair-viz.github.io
@@ -129,5 +129,3 @@ RUN conda install --quiet --yes \
     rm -rf /home/$NB_USER/.node-gyp && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
-
-CMD ['jupyter-scipy-notebook-ee start.sh jupyter lab']
