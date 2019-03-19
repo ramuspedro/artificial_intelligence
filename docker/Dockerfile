@@ -1,4 +1,10 @@
-FROM continuumio/anaconda:5.2.0
+FROM continuumio/anaconda3:5.2.0
+
+RUN apt-get update \
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
@@ -67,6 +73,9 @@ RUN patch -d /opt/conda/lib/python3.6/site-packages -p1 --forward --reject-file=
 RUN rm /tmp/nbdime-*.patch
 USER ${username}
 WORKDIR ${workdir}
+
+# update some packages
+RUN conda install -y scikit-learn=0.20.3
 
 
 COPY docker/bashrc.bash /tmp/
